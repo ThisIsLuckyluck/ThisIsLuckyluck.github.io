@@ -2,4 +2,4 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({});
-    site: 'https://ThisIsLuckyluck.github.io'
+    site: 'https://thisisluckyluck.github.io/'
