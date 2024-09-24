@@ -1,49 +1,54 @@
 ---
-interface Props {
-	title: string;
-}
-
 const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="fr">
-	<head>
-		<meta charset="UTF-8"/>
-		<meta name="description" content="Astro description"/>
-		<meta name="viewport" content="width=device-width"/>
-		<meta name="generator" content={Astro.generator}/>
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot/>
-	</body>
-	<footer class="flex justify-center items-center w-full h-16 text-white fixed bottom-0 animated-gradient">
-		<a href="https://github.com/ThisIsLuckyluck">Site made by <span class="font-bold">ThisIsLuckyluck</span></a>
-	  </footer>
-	  
+<html lang="fr" class="bg-darktheme text-white">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="description" content="Astro description"/>
+        <meta name="viewport" content="width=device-width"/>
+        <meta name="generator" content={Astro.generator}/>
+        <title>{title}</title>
+    </head>
+    <body>
+        <div id="cursor-circle"></div>
+        <nav>
+            <ul>
+                <li>Accueil</li>
+                <li>Tableau de synthèse</li>
+                <li>Mes Projets</li>
+                <li>Veille technologique</li>
+                <li></li>
+            </ul>
+        </nav>
+    </body>
+    <footer class="flex justify-center items-center w-full h-16 text-white fixed bottom-0 animated-footer">
+        <a href="https://github.com/ThisIsLuckyluck">Site made by <span class="font-bold">ThisIsLuckyluck</span></a>
+        <a href="https://www.linkedin.com/in/lucas-denis-143825297/" target="_blank"><img src="./Linkedin.png" alt="Linkedin logo" class="absolute right-0 bottom-1"/></a>
+        <a href="https://github.com/ThisIsLuckyluck" target="_blank"><img src="./github_.png" class="absolute left-0 bottom-1 github-logo"></a>
+    </footer>
+    <script>
+        document.addEventListener('mousemove', function(e) {
+            const cursorCircle = document.getElementById('cursor-circle');
+            cursorCircle.style.left = e.pageX + 'px';
+            cursorCircle.style.top = e.pageY + 'px';
+        });
+    </script>
 </html>
 <style is:global>
-	:root {
-	}
-	@keyframes gradientAnimation {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-.animated-gradient {
-	background: linear-gradient(270deg, #21077f, #410766, #490b83, #3f0e8d);
-
-  background-size: 400% 400%;
-  animation: gradientAnimation 8s ease infinite;
-}
-
-
+    :root {
+    }
+    #cursor-circle {
+        position: absolute;
+        width: 600px; /* Taille plus grande */
+        height: 600px; /* Taille plus grande */
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 70%, rgba(255, 255, 255, 0.01) 100%);
+        border-radius: 50%;
+        pointer-events: none; /* Pour que le cercle ne bloque pas les événements de la souris */
+        transform: translate(-50%, -50%); /* Pour centrer le cercle sur le curseur */
+    }
+    .github-logo {
+        width: 50px;
+    }
 </style>
